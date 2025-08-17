@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop Candles | Earthy Candles</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: #f5f3ef;
+      color: #2f2f2f;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #3d3d29;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .product-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      width: 260px;
+      padding: 16px;
+      margin: 0 8px 24px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .product-card img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+    .gallery-caption {
+      font-size: 1.1em;
+      margin-top: 8px;
+      color: #6b8e23;
+    }
+    .actions {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    input[type="number"] {
+      width: 50px;
+      padding: 4px 6px;
+      font-size: 1em;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    button {
+      background: #6b8e23;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #556b2f;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 24px;
+      background: #e5e5e5;
+      color: #3d3d29;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 18px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .back-btn:hover {
+      background: #d2d2d2;
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="back-btn">← Back to Home</a>
+  <h1>Shop Candles</h1>
+  <div class="gallery">
+    <div class="product-card">
+      <img src="images/candle1.jpg" alt="Fluffy Pink Flower Candle">
+      <div class="gallery-caption">Fluffy Pink Flower Candle</div>
+      <div class="actions">
+        <label for="qty1">Qty:</label>
+        <input type="number" id="qty1" min="1" value="1">
+        <button onclick="addToBasket('Fluffy Pink Flower Candle', document.getElementById('qty1').value)">Add to Basket</button>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="images/candle2.jpg" alt="Ocean Breeze Candle">
+      <div class="gallery-caption">Ocean Breeze Candle</div>
+      <div class="actions">
+        <label for="qty2">Qty:</label>
+        <input type="number" id="qty2" min="1" value="1">
+        <button onclick="addToBasket('Ocean Breeze Candle', document.getElementById('qty2').value)">Add to Basket</button>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="images/candle3.jpg" alt="Citrus Sunrise Candle">
+      <div class="gallery-caption">Citrus Sunrise Candle</div>
+      <div class="actions">
+        <label for="qty3">Qty:</label>
+        <input type="number" id="qty3" min="1" value="1">
+        <button onclick="addToBasket('Citrus Sunrise Candle', document.getElementById('qty3').value)">Add to Basket</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    function addToBasket(product, qty) {
+      alert(qty + ' x ' + product + ' added to basket!');
+      // Replace with real basket logic as needed
+    }
+  </script>
+</body>
+</html>
