@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop Candles | Earthy Candles</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: #f5f3ef;
+      color: #2f2f2f;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      color: #3d3d29;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .product-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      width: 260px;
+      padding: 16px;
+      margin: 0 8px 24px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .product-card img {
+      width: 100%;
+      max-width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      transition: transform 0.3s ease;
+    }
+    .product-card img:hover {
+      transform: scale(1.05);
+    }
+    .gallery-caption {
+      font-size: 1.1em;
+      margin-top: 8px;
+      color: #6b8e23;
+    }
+    .actions {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    input[type="number"] {
+      width: 50px;
+      padding: 4px 6px;
+      font-size: 1em;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    button {
+      background: #6b8e23;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #556b2f;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-bottom: 24px;
+      background: #e5e5e5;
+      color: #3d3d29;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 18px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .back-btn:hover {
+      background: #d2d2d2;
+    }
+    /* Basket UI */
+    .basket {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 10px 18px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .basket span {
+      color: #6b8e23;
+      font-weight: bold;
+    }
+    #basket-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      justify-content: center;
+      align-items: center;
+    }
+    .basket-content {
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px;
+      max-width: 500px;
+      width: 90%;
+      text-align: left;
+    }
+    .basket-content h2 {
+      margin-top: 0;
+      color: #3d3d29;
+    }
+    .basket-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .basket-actions {
+      margin-top: 20px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="back-btn">← Back to Home</a>
+  <h1>Shop Candles</h1>
+
+  <!-- Basket Icon -->
+  <div class="basket" onclick="toggleBasket()">
+    🛒 Basket (<span id="basket-count">0</span>)
+  </div>
+
+  <div class="gallery">
+    <div class="product-card">
+      <img src="images/candle1.jpg" alt="Fluffy Pink Flower Candle">
+      <div class="gallery-caption">Fluffy Pink Flower Candle</div>
+      <div class="actions">
+        <label for="qty1">Qty:</label>
+        <input type="number" id="qty1" min="1" value="1">
+        <button onclick="addToBasket('Fluffy Pink Flower Candle', document.getElementById('qty1').value)">Add to Basket</button>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="images/candle2.jpg" alt="Ocean Breeze Candle">
+      <div class="gallery-caption">Ocean Breeze Candle</div>
+      <div class="actions">
+        <label for="qty2">Qty:</label>
+        <input type="number" id="qty2" min="1" value="1">
+        <button onclick="addToBasket('Ocean Breeze Candle', document.getElementById('qty2').value)">Add to Basket</button>
+      </div>
+    </div>
+    <div class="product-card">
+      <img src="images/candle3.jpg" alt="Citrus Sunrise Candle">
+      <div class="gallery-caption">Citrus Sunrise Candle</div>
+      <div class="actions">
+        <label for="qty3">Qty:</label>
+        <input type="number" id="qty3" min="1" value="1">
+        <button onclick="addToBasket('Citrus Sunrise Candle', document.getElementById('qty3').value)">Add to Basket</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Basket Modal -->
+  <div id="basket-modal">
+    <div class="basket-content">
+      <h2>Your Basket</h2>
+      <div id="basket-items"></div>
+      <div class="basket-actions">
+        <button onclick="clearBasket()">Clear Basket</button>
+        <button onclick="checkout()">Checkout</button>
+        <button onclick="toggleBasket()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let basket = JSON.parse(localStorage.getItem('basket')) || [];
+
+    function updateBasketDisplay() {
+      document.getElementById('basket-count').innerText = basket.reduce((sum, item) => sum + item.qty, 0);
+      const basketItems = document.getElementById('basket-items');
+      basketItems.innerHTML = '';
+      if (basket.length === 0) {
+        basketItems.innerHTML = '<p>Your basket is empty.</p>';
+        return;
+      }
+      basket.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.classList.add('basket-item');
+        div.innerHTML = `
+          <span>${item.qty} × ${item.product}</span>
+          <button onclick="removeItem(${index})">Remove</button>
+        `;
+        basketItems.appendChild(div);
+      });
+    }
+
+    function addToBasket(product, qty) {
+      qty = parseInt(qty);
+      const existing = basket.find(item => item.product === product);
+      if (existing) {
+        existing.qty += qty;
+      } else {
+        basket.push({ product, qty });
+      }
+      localStorage.setItem('basket', JSON.stringify(basket));
+      updateBasketDisplay();
+      alert(`${qty} × ${product} added to basket!`);
+    }
+
+    function removeItem(index) {
+      basket.splice(index, 1);
+      localStorage.setItem('basket', JSON.stringify(basket));
+      updateBasketDisplay();
+    }
+
+    function clearBasket() {
+      basket = [];
+      localStorage.removeItem('basket');
+      updateBasketDisplay();
+    }
+
+    function toggleBasket() {
+      const modal = document.getElementById('basket-modal');
+      modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+      if (modal.style.display === 'flex') {
+        modal.style.display = 'flex';
+      }
+    }
+
+    function checkout() {
+      if (basket.length === 0) {
+        alert("Your basket is empty!");
+        return;
+      }
+      alert("Proceeding to checkout... (placeholder)");
+    }
+
+    // Initial render
+    updateBasketDisplay();
+  </script>
+</body>
+</html>
